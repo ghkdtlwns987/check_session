@@ -11,9 +11,9 @@ import java.util.Date;
  *
  */
 @Controller
-@RequestMapping("/session")
+@RequestMapping("/")
 public class SessionController {
-    @GetMapping("/print")
+    @GetMapping("/")
     public String printSession(HttpSession session, Model model){
         System.out.println("Session : " + session);
         System.out.println("Session Id : " + session.getId());
