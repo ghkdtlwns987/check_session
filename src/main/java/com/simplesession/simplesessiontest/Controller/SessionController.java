@@ -5,6 +5,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import javax.servlet.http.HttpSession;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.Date;
 import java.util.Enumeration;
 
@@ -14,12 +16,14 @@ import java.util.Enumeration;
 @Controller
 @RequestMapping("/session")
 public class SessionController {
+
     @GetMapping("/print")
     public String printSession(HttpSession session, Model model){
-        System.out.println("Session : " + session);
-        System.out.println("Session Id : " + session.getId());
 
         Date current_Timestamp = new Date();
+        System.out.println("Session : " + session);
+        System.out.println("Session Id : " + session.getId());
+        System.out.println("TimeStamp : " + current_Timestamp);
 
         model.addAttribute("session_value", session);
         model.addAttribute("session_id", session.getId());
@@ -44,5 +48,10 @@ public class SessionController {
         }
 
         return "session/all";
+    }
+
+    @GetMapping("/health_check")
+    public String healthCheck(){
+        return "ok";
     }
 }
